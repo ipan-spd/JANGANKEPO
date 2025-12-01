@@ -1,4 +1,3 @@
-
 import json
 import requests
 import time
@@ -7,8 +6,8 @@ import phonenumbers
 from phonenumbers import carrier, geocoder, timezone
 from sys import stderr
 
-
-Bl='\033[30m' # VARIABLE BUAT WARNA CUYY
+# COLOR  
+Bl='\033[30m'
 Re='\033[1;31m'
 Gr='\033[1;32m'
 Ye='\033[1;33m'
@@ -17,15 +16,47 @@ Mage='\033[1;35m'
 Cy='\033[1;36m'
 Wh='\033[1;37m'
 
-#BANNER TOOLS
-os.system('clear')
+os.system("clear")
+
+# =============================================================
+# ANIMASI BANNER IPAN
+# =============================================================
+
+def banner_anim():
+    ipan = r"""
+██╗██████╗  █████╗ ███╗   ██╗
+██║██╔══██╗██╔══██╗████╗  ██║
+██║██████  ███████║██╔██╗ ██║
+██║██       ██╔══██║██║╚██╗██║
+██║██║      ██║  ██║██║ ╚████║
+╚═╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝
+"""
+
+    colors = [
+        "\033[38;5;196m", "\033[38;5;202m", "\033[38;5;208m",
+        "\033[38;5;214m", "\033[38;5;220m", "\033[38;5;190m",
+        "\033[38;5;46m", "\033[38;5;51m", "\033[38;5;93m",
+        "\033[38;5;201m"
+    ]
+
+    import itertools
+    for color in itertools.islice(itertools.cycle(colors), 15):
+        os.system("clear")
+        print(color + ipan + "\033[0m")
+        time.sleep(0.1)
+
+# Tampilkan animasi
+banner_anim()
+
+# =============================================================
+# MENU UTAMA
+# =============================================================
+
 stderr.writelines(f"""{Gr}
 
     \033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
 
-          {Wh}[ + ]  C O D E   B Y  T X R  [ + ]  
+          {Wh}[ + ]  C O D E   B Y  I P A N C O D E S [ + ]  
         
     {Wh}[ 1 ] {Gr}IP Tracker
     {Wh}[ 2 ] {Gr}Show Your IP
@@ -34,204 +65,128 @@ stderr.writelines(f"""{Gr}
     {Wh}[ 0 ] {Gr}Exit
 """)
 
-input_user = input(f'\n   {Wh}BO-HAYDAD-»  {Gr}') #OPSI MENU
+menu = input(f"\n {Wh}IPAN-root → {Gr}")
 
-
-if input_user == '1': #OPSI 1
-    os.system('clear')
-    time.sleep(1)
-    stderr.writelines(f"""{Wh}
-
-  \033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-                  
-
-    """)
-
+# =============================================================
+# 1. IP TRACKER
+# =============================================================
+if menu == "1":
+    os.system("clear")
     try:
-        def IP_Track():
-            ip = input(f"{Wh}\n Enter IP target : {Gr}") #INPUT IP ADDRESS
-            print()
-            print(f' {Wh}============= {Gr}SHOW INFORMATION IP ADDRESS {Wh}=============')
-            req_api = requests.get(f"http://ipwho.is/{ip}") #API IPWHOIS.IS
-            ip_data = json.loads(req_api.text)
-            time.sleep(2)
-            print(f"{Wh}\n IP target       :{Gr}", ip)
-            print(f"{Wh} Type IP         :{Gr}", ip_data["type"])
-            print(f"{Wh} Country         :{Gr}", ip_data["country"])
-            print(f"{Wh} Country Code    :{Gr}", ip_data["country_code"])
-            print(f"{Wh} City            :{Gr}", ip_data["city"])
-            print(f"{Wh} Continent       :{Gr}", ip_data["continent"])
-            print(f"{Wh} Continent Code  :{Gr}", ip_data["continent_code"])
-            print(f"{Wh} Region          :{Gr}", ip_data["region"])
-            print(f"{Wh} Region Code     :{Gr}", ip_data["region_code"])
-            print(f"{Wh} Latitude        :{Gr}", ip_data["latitude"])
-            print(f"{Wh} Longitude       :{Gr}", ip_data["longitude"])
-            lat = int(ip_data['latitude'])
-            lon = int(ip_data['longitude'])
-            print(f"{Wh} Maps            :{Gr}",f"https://www.google.com/maps/@{lat},{lon},8z")
-            print(f"{Wh} EU              :{Gr}", ip_data["is_eu"])
-            print(f"{Wh} Postal          :{Gr}", ip_data["postal"])
-            print(f"{Wh} Calling Code    :{Gr}", ip_data["calling_code"])
-            print(f"{Wh} Capital         :{Gr}", ip_data["capital"])
-            print(f"{Wh} Borders         :{Gr}", ip_data["borders"])
-            print(f"{Wh} Country Flag    :{Gr}", ip_data["flag"]["emoji"])
-            print(f"{Wh} ASN             :{Gr}", ip_data["connection"]["asn"])
-            print(f"{Wh} ORG             :{Gr}", ip_data["connection"]["org"])
-            print(f"{Wh} ISP             :{Gr}", ip_data["connection"]["isp"])
-            print(f"{Wh} Domain          :{Gr}", ip_data["connection"]["domain"])
-            print(f"{Wh} ID              :{Gr}", ip_data["timezone"]["id"])
-            print(f"{Wh} ABBR            :{Gr}", ip_data["timezone"]["abbr"])
-            print(f"{Wh} DST             :{Gr}", ip_data["timezone"]["is_dst"])
-            print(f"{Wh} Offset          :{Gr}", ip_data["timezone"]["offset"])
-            print(f"{Wh} UTC             :{Gr}", ip_data["timezone"]["utc"])
-            print(f"{Wh} Current Time    :{Gr}", ip_data["timezone"]["current_time"])
-        if __name__ == '__main__':
-            IP_Track()
-    except KeyboardInterrupt:
-        print(f" {Wh}[{Ye}!{Wh}] {Ye}PROGRAM STOPPED...")
+        ip = input(f"\n {Wh}Enter IP Target : {Gr}")
+        data = requests.get(f"http://ipwho.is/{ip}").json()
 
-elif input_user == '3': #OPSI 2
-    os.system('clear')
-    time.sleep(1)
-    stderr.writelines(f"""{Wh}
+        if not data["success"]:
+            print(f"{Re}IP Tidak Valid!")
+            exit()
 
- \033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
+        lat = data["latitude"]
+        lon = data["longitude"]
 
-    """)
+        print(f"""
+{Wh}=========== {Gr}IP INFORMATION {Wh}===========
 
+{Wh}IP             : {Gr}{ip}
+{Wh}TYPE           : {Gr}{data['type']}
+{Wh}COUNTRY        : {Gr}{data['country']}
+{Wh}CITY           : {Gr}{data['city']}
+{Wh}REGION         : {Gr}{data['region']}
+{Wh}LAT            : {Gr}{lat}
+{Wh}LON            : {Gr}{lon}
+{Wh}GOOGLE MAPS    : {Gr}https://www.google.com/maps/@{lat},{lon},9z
+{Wh}ORG            : {Gr}{data['connection']['org']}
+{Wh}ISP            : {Gr}{data['connection']['isp']}
+{Wh}TIMEZONE       : {Gr}{data['timezone']['id']}
+{Wh}CURRENT TIME   : {Gr}{data['timezone']['current_time']}
+""")
+
+    except Exception as e:
+        print(f"{Re}Error:", e)
+
+# =============================================================
+# 2. SHOW YOUR IP
+# =============================================================
+elif menu == "2":
+    os.system("clear")
     try:
-        def phoneGW():
-            User_phone = input(f"\n {Wh}Enter phone number target {Gr}Ex [+962xxxxxxxxxx] {Wh}: {Gr}") #INPUT NUMBER PHONE
-            default_region = "ID" #DEFAULT NEGARA INDONESIA
+        print(f"{Wh}Fetching your IP...\n")
+        req = requests.get("https://ipwho.is/").json()
 
-            parsed_number = phonenumbers.parse(User_phone, default_region) # VARIABLE PHONENUMBERS
-            region_code = phonenumbers.region_code_for_number(parsed_number)
-            jenis_provider = carrier.name_for_number(parsed_number, "en")
-            location = geocoder.description_for_number(parsed_number, "id")
-            is_valid_number = phonenumbers.is_valid_number(parsed_number)
-            is_possible_number = phonenumbers.is_possible_number(parsed_number)
-            formatted_number = phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
-            formatted_number_for_mobile = phonenumbers.format_number_for_mobile_dialing(parsed_number, default_region, with_formatting=True)
-            number_type = phonenumbers.number_type(parsed_number)
-            timezone1 = timezone.time_zones_for_number(parsed_number)
-            timezoneF = ', '.join(timezone1)
+        print(f"""
+{Wh}=========== {Gr}YOUR IP INFORMATION {Wh}===========
 
-            print(f"\n {Wh}========== {Gr}SHOW INFORMATION PHONE NUMBERS {Wh}==========")
-            print(f"\n {Wh}Location             :{Gr} {location}")
-            print(f" {Wh}Region Code          :{Gr} {region_code}")
-            print(f" {Wh}Timezone             :{Gr} {timezoneF}")
-            print(f" {Wh}Operator             :{Gr} {jenis_provider}")
-            print(f" {Wh}Valid number         :{Gr} {is_valid_number}")
-            print(f" {Wh}Possible number      :{Gr} {is_possible_number}")
-            print(f" {Wh}International format :{Gr} {formatted_number}")
-            print(f" {Wh}Mobile format        :{Gr} {formatted_number_for_mobile}")
-            print(f" {Wh}Original number      :{Gr} {parsed_number.national_number}")
-            print(f" {Wh}E.164 format         :{Gr} {phonenumbers.format_number(parsed_number, phonenumbers.PhoneNumberFormat.E164)}")
-            print(f" {Wh}Country code         :{Gr} {parsed_number.country_code}")
-            print(f" {Wh}Local number         :{Gr} {parsed_number.national_number}")
-            if number_type == phonenumbers.PhoneNumberType.MOBILE:
-                print(f" {Wh}Type                 :{Gr} This is a mobile number")
-            elif number_type == phonenumbers.PhoneNumberType.FIXED_LINE:
-                print(f" {Wh}Type                 :{Gr} This is a fixed-line number")
-            else:
-                print(f" {Wh}Type                 :{Gr} This is another type of number")
-        if __name__ == '__main__':
-            phoneGW()
-    except KeyboardInterrupt:
-        print(f" {Wh}[{Ye}!{Wh}] {Ye}PROGRAM STOPPED...")
+{Wh}Your IP        : {Gr}{req['ip']}
+{Wh}Country        : {Gr}{req['country']}
+{Wh}City           : {Gr}{req['city']}
+{Wh}ISP            : {Gr}{req['connection']['isp']}
+{Wh}ORG            : {Gr}{req['connection']['org']}
+{Wh}Timezone       : {Gr}{req['timezone']['id']}
+{Wh}Current Time   : {Gr}{req['timezone']['current_time']}
+""")
+
+    except:
+        print(f"{Re}Gagal mengambil IP!")
+
+# =============================================================
+# 3. PHONE TRACKER
+# =============================================================
+elif menu == "3":
+    os.system("clear")
+    try:
+        num = input(f"\n {Wh}Enter phone number (+62xxxx): {Gr}")
+        region = "ID"
+
+        parsed = phonenumbers.parse(num, region)
+
+        print(f"""
+{Wh}=========== {Gr}PHONE INFO {Wh}===========
+
+{Wh}Location   : {Gr}{geocoder.description_for_number(parsed, 'id')}
+{Wh}Region     : {Gr}{phonenumbers.region_code_for_number(parsed)}
+{Wh}Timezone   : {Gr}{", ".join(timezone.time_zones_for_number(parsed))}
+{Wh}Provider   : {Gr}{carrier.name_for_number(parsed, 'en')}
+{Wh}Valid      : {Gr}{phonenumbers.is_valid_number(parsed)}
+{Wh}Possible   : {Gr}{phonenumbers.is_possible_number(parsed)}
+{Wh}E.164      : {Gr}{phonenumbers.format_number(parsed, phonenumbers.PhoneNumberFormat.E164)}
+""")
+
+    except:
+        print(f"{Re}Nomor tidak valid!")
+
+# =============================================================
+# 4. USERNAME TRACKER (SHERLOCK OSINT)
+# =============================================================
+elif menu == "4":
+    os.system("clear")
+    print(f"\n {Wh}Username Tracker menggunakan OSINT Sherlock API\n")
     
-elif input_user == '2': #OPSI 3
-    os.system('clear')
-    time.sleep(1)
-    stderr.writelines(f"""{Wh}
+    username = input(f"{Wh}Masukkan username target : {Gr}")
 
-   \033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
- 
-
-
-""")
+    print(f"\n{Wh}Mencari akun dengan username {Gr}{username}{Wh}...\n")
 
     try:
-        def showIP():
-            respone = requests.get('https://api.ipify.org/')
-            Show_IP = respone.text
-            
-            print(f"\n {Wh}========== {Gr}SHOW INFORMATION YOUR IP {Wh}==========")
-            print(f"\n {Wh}[{Gr} + {Wh}] Your IP Adrress : {Gr}{Show_IP}")
-            print(f"\n {Wh}==============================================")
-        if __name__ == '__main__':
-            showIP()
-    except KeyboardInterrupt:
-        print(f" {Wh}[{Ye}!{Wh}] {Ye}PROGRAM STOPPED...")
+        api = requests.get(f"https://api.sherlockproject.xyz/search/{username}").json()
 
+        if "sites" not in api:
+            print(f"{Re}API error!")
+            exit()
 
+        print(f"{Wh}=========== {Gr}RESULT FOUND {Wh}===========\n")
 
-elif input_user == '4':
-    os.system('clear')
-    time.sleep(1)
-    stderr.writelines(f"""{Wh}
+        for site in api["sites"]:
+            if site["exists"]:
+                print(f"{Gr}[ FOUND ] {Wh}{site['name']} → {Cy}{site['url']}")
 
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-\033[38;5;196m██\033[38;5;202m██\033[38;5;208m██\033[38;5;214m██\033[38;5;220m██\033[0m   \033[38;5;51m██\033[38;5;45m██\033[38;5;39m██\033[38;5;33m██\033[38;5;27m██\033[0m   \033[38;5;201m██\033[38;5;198m██\033[38;5;200m██\033[38;5;163m██\033[38;5;127m██\033[0m   \033[38;5;118m██\033[38;5;82m██\033[38;5;46m██\033[38;5;40m██\033[38;5;34m██\033[0m
-                                                                                                
+        print(f"\n{Wh}=========== {Gr}SCAN COMPLETE {Wh}===========\n")
 
-""")
-    try:
-        def TrackLu(username):
-            results = {}
-            social_media = [
-            {"url": "https://www.facebook.com/{}", "name": "Facebook"},
-            {"url": "https://www.twitter.com/{}", "name": "Twitter"},
-            {"url": "https://www.instagram.com/{}", "name": "Instagram"},
-            {"url": "https://www.linkedin.com/in/{}", "name": "LinkedIn"},
-            {"url": "https://www.github.com/{}", "name": "GitHub"},
-            {"url": "https://www.pinterest.com/{}", "name": "Pinterest"},
-            {"url": "https://www.tumblr.com/{}", "name": "Tumblr"},
-            {"url": "https://www.youtube.com/{}", "name": "Youtube"},
-            {"url": "https://soundcloud.com/{}", "name": "SoundCloud"},
-            {"url": "https://www.snapchat.com/add/{}", "name": "Snapchat"},
-            {"url": "https://www.tiktok.com/@{}", "name": "TikTok"},
-            {"url": "https://www.behance.net/{}", "name": "Behance"},
-            {"url": "https://www.medium.com/@{}", "name": "Medium"},
-            {"url": "https://www.quora.com/profile/{}", "name": "Quora"},
-            {"url": "https://www.flickr.com/people/{}", "name": "Flickr"},
-            {"url": "https://www.periscope.tv/{}", "name": "Periscope"},
-            {"url": "https://www.twitch.tv/{}", "name": "Twitch"},
-            {"url": "https://www.dribbble.com/{}", "name": "Dribbble"},
-            {"url": "https://www.stumbleupon.com/stumbler/{}", "name": "StumbleUpon"},
-            {"url": "https://www.ello.co/{}", "name": "Ello"},
-            {"url": "https://www.producthunt.com/@{}", "name": "Product Hunt"},
-            {"url": "https://www.snapchat.com/add/{}", "name": "Snapchat"},
-            {"url": "https://www.telegram.me/{}", "name": "Telegram"},
-            {"url": "https://www.weheartit.com/{}", "name": "We Heart It"}
-            ]
+    except Exception as e:
+        print(f"{Re}Error:", e)
 
-            for site in social_media:
-                url = site['url'].format(username)
-                response = requests.get(url)
-                if response.status_code == 200:
-                    results[site['name']] = url
-                else:
-                    results[site['name']] = (f"{Ye}Username not found {Ye}!")
-            return results
-        username = input(f"\n {Wh}Enter Username : {Gr}")
-        print(f"\n {Wh}========== {Gr}SHOW INFORMATION USERNAME {Wh}==========")
-        print()
-        results = TrackLu(username)
-        for site, url in results.items():
-            print(f" {Wh}[ {Gr}+ {Wh}] {site} : {Gr}{url}")
-    except KeyboardInterrupt:
-        print(f" {Wh}[{Ye}!{Wh}] {Ye}PROGRAM STOPPED...")
+# =============================================================
+# EXIT
+# =============================================================
+elif menu == "0":
+    print(f"{Gr}Exit...")
 
-elif input_user == '0':
-    print(f"\n  {Wh}[{Ye}!{Wh}] {Ye}THANK'S FOR USING TOOL {Ye}GHOST-TRACK !")
 else:
-    print(f" {Ye}Opss no option !") #FALSE
-
+    print(f"{Re}Wrong Input!")
